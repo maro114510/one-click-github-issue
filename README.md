@@ -4,10 +4,10 @@ Chrome extension that saves the current tab as a GitHub Issue with one click.
 
 Inspired by [One-Click TickTick](https://github.com/chrschorn/one-click-ticktick), which does the same for TickTick tasks. Thank you to its author for the idea and the clear design.
 
-| Issue part | Content |
-|---|---|
-| Title | Page title, or the page URL when the title is empty |
-| Body | Page URL |
+| Issue part | Content                                             |
+| ---------- | --------------------------------------------------- |
+| Title      | Page title, or the page URL when the title is empty |
+| Body       | Page URL                                            |
 
 ## Setup
 
@@ -38,12 +38,12 @@ pnpm build
 
 Open GitHub Settings, Developer settings, Fine-grained tokens, Generate new token.
 
-| Field | Value |
-|---|---|
-| Expiration | Any date |
+| Field             | Value                                                |
+| ----------------- | ---------------------------------------------------- |
+| Expiration        | Any date                                             |
 | Repository access | Only select repositories, then the target repository |
-| Issues permission | Read and write |
-| Other permissions | Not set |
+| Issues permission | Read and write                                       |
+| Other permissions | Not set                                              |
 
 ### 4. Configure
 
@@ -59,11 +59,11 @@ Open GitHub Settings, Developer settings, Fine-grained tokens, Generate new toke
 
 Click the extension button on any page.
 
-| Badge | Meaning |
-|---|---|
-| ✓ | Issue created |
-| ✗ | Failed, for example a page without a URL |
-| None | No result yet in this tab |
+| Badge | Meaning                                  |
+| ----- | ---------------------------------------- |
+| ✓     | Issue created                            |
+| ✗     | Failed, for example a page without a URL |
+| None  | No result yet in this tab                |
 
 - Settings page opens instead
   - Settings are incomplete
@@ -81,10 +81,10 @@ Click the extension button on any page.
 
 Saved titles and URLs follow the target repository's visibility.
 
-| Repository | Who can read |
-|---|---|
-| Public | Anyone |
-| Private | Users with access |
+| Repository | Who can read      |
+| ---------- | ----------------- |
+| Public     | Anyone            |
+| Private    | Users with access |
 
 ## Docs
 
