@@ -11,8 +11,17 @@ export type SaveResult =
   | { ok: true }
   | { ok: false; reason: "invalid-repository" };
 
-export function parseRepository(_input: string): Repository | undefined {
-  return undefined;
+// GitHub username rules: alphanumerics and single hyphens, not at either end.
+const OWNER = /^[A-Za-z0-9](?:[A-Za-z0-9]|-(?=[A-Za-z0-9])){0,38}$/;
+const NAME = /^[A-Za-z0-9._-]{1,100}$/;
+
+export function parseRepository(input: string): Repository | undefined {
+  const parts = input.trim().split("/");
+  if (parts.length !== 2) return undefined;
+  const [owner = "", name = ""] = parts;
+  if (!OWNER.test(owner) || !NAME.test(name)) return undefined;
+  if (name === "." || name === "..") return undefined;
+  return { owner, name };
 }
 
 export function isComplete(_settings: Settings): _settings is CompleteSettings {
