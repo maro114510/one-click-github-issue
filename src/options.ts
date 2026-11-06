@@ -10,6 +10,7 @@ const form = element("settings", HTMLFormElement);
 const repositoryField = element("repository-field", HTMLDivElement);
 const repositoryInput = element("repository", HTMLInputElement);
 const repositorySupport = element("repository-support", HTMLParagraphElement);
+const tokenField = element("token-field", HTMLDivElement);
 const tokenInput = element("token", HTMLInputElement);
 const tokenSupport = element("token-support", HTMLParagraphElement);
 const saveButton = element("save", HTMLButtonElement);
@@ -35,10 +36,13 @@ async function render(): Promise<void> {
   if (settings.repository !== undefined) {
     repositoryInput.value = `${settings.repository.owner}/${settings.repository.name}`;
   }
-  tokenSupport.textContent =
-    settings.token === undefined
-      ? "Token not set. Paste it again after Chrome restarts."
-      : "Token set. Leave this empty to keep it.";
+  const tokenSet = settings.token !== undefined;
+  tokenField.toggleAttribute("data-saved", tokenSet);
+  // A fixed-length mask, so the page reveals that a token exists but not its length.
+  tokenInput.placeholder = tokenSet ? "••••••••••••••••" : " ";
+  tokenSupport.textContent = tokenSet
+    ? "Token set. Leave this empty to keep it."
+    : "Token not set. Paste it again after Chrome restarts.";
 }
 
 repositoryInput.addEventListener("input", () => {

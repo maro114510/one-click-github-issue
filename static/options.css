@@ -124,7 +124,8 @@ main {
 }
 
 .text-field input:focus + label,
-.text-field input:not(:placeholder-shown) + label {
+.text-field input:not(:placeholder-shown) + label,
+.text-field[data-saved] input + label {
   transform: translateY(-24px) scale(0.75);
 }
 
