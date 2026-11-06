@@ -37,4 +37,22 @@ describe("check-version", () => {
 
     expect(checkVersion(cwd, "v0.1.0").status).toBe(0);
   });
+
+  it("fails naming package.json when its version differs from the tag", () => {
+    const cwd = checkoutWithVersions({ pkg: "0.0.0", manifest: "0.1.0" });
+
+    const result = checkVersion(cwd, "v0.1.0");
+
+    expect(result.status).toBe(1);
+    expect(result.stderr).toContain("package.json");
+  });
+
+  it("fails naming manifest.json when its version differs from the tag", () => {
+    const cwd = checkoutWithVersions({ pkg: "0.1.0", manifest: "0.0.1" });
+
+    const result = checkVersion(cwd, "v0.1.0");
+
+    expect(result.status).toBe(1);
+    expect(result.stderr).toContain("manifest.json");
+  });
 });
