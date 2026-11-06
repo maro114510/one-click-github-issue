@@ -53,7 +53,10 @@ jobs:
           cp LICENSE dist/
           (cd dist && zip -r ../one-click-github-issue.zip .)
       # A fixed asset name keeps releases/latest/download/one-click-github-issue.zip stable.
-      - name: Attach the zip to the release
+      # release-please leaves a draft: an immutable release takes no assets once published.
+      - name: Attach the zip and publish the release
         env:
           GH_TOKEN: ${{ github.token }}
-        run: gh release upload "$TAG" one-click-github-issue.zip --repo "$GITHUB_REPOSITORY"
+        run: |
+          gh release upload "$TAG" one-click-github-issue.zip --repo "$GITHUB_REPOSITORY"
+          gh release edit "$TAG" --draft=false --repo "$GITHUB_REPOSITORY"
