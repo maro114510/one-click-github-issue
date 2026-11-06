@@ -16,3 +16,7 @@
 
 
 # End Of Ignore
+
+# Build
+dist/
+node_modules/
