@@ -73,3 +73,4 @@ sequenceDiagram
 - [Authenticate with a fine-grained PAT until store publication](../adr/authenticate-with-fine-grained-pat.md)
 - [Keep the token in session storage](../adr/keep-the-token-in-session-storage.md)
 - [One-Click TickTick](https://github.com/chrschorn/one-click-ticktick)
+
