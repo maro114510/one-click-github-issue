@@ -5,7 +5,7 @@
   "type": "module",
   "packageManager": "pnpm@10.33.0",
   "scripts": {
-    "build": "tsc -p tsconfig.json && node scripts/copy-static.mjs",
+    "build": "rm -rf dist && tsc -p tsconfig.json && node scripts/copy-static.mjs",
     "typecheck": "tsc -p tsconfig.json --noEmit",
     "lint": "biome check",
     "format": "biome check --write",
