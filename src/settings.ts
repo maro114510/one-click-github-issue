@@ -24,17 +24,43 @@ export function parseRepository(input: string): Repository | undefined {
   return { owner, name };
 }
 
-export function isComplete(_settings: Settings): _settings is CompleteSettings {
-  return false;
+export function isComplete(settings: Settings): settings is CompleteSettings {
+  return settings.repository !== undefined && settings.token !== undefined;
 }
 
+const REPOSITORY_KEY = "repository";
+const TOKEN_KEY = "token";
+
+// The token lives only in session storage, which Chrome keeps in memory and
+// never writes to disk; local and sync storage persist to the profile.
 export async function loadSettings(): Promise<Settings> {
-  return { repository: undefined, token: undefined };
+  const [local, session] = await Promise.all([
+    chrome.storage.local.get(REPOSITORY_KEY),
+    chrome.storage.session.get(TOKEN_KEY),
+  ]);
+  const repository = local[REPOSITORY_KEY];
+  const token = session[TOKEN_KEY];
+  return {
+    repository:
+      typeof repository === "string" ? parseRepository(repository) : undefined,
+    token: typeof token === "string" && token !== "" ? token : undefined,
+  };
 }
 
-export async function saveSettings(_input: {
+export async function saveSettings(input: {
   repository: string;
   token: string;
 }): Promise<SaveResult> {
+  const repository = parseRepository(input.repository);
+  if (repository === undefined) {
+    return { ok: false, reason: "invalid-repository" };
+  }
+  await chrome.storage.local.set({
+    [REPOSITORY_KEY]: `${repository.owner}/${repository.name}`,
+  });
+  const token = input.token.trim();
+  if (token !== "") {
+    await chrome.storage.session.set({ [TOKEN_KEY]: token });
+  }
   return { ok: true };
 }
