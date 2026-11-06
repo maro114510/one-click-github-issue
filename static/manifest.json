@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "One-Click GitHub Issue",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Create a GitHub Issue from the current page in one click.",
   "minimum_chrome_version": "102",
   "permissions": [
