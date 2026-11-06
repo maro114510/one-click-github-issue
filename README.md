@@ -2,6 +2,8 @@
 
 Chrome extension that saves the current tab as a GitHub Issue with one click.
 
+Inspired by [One-Click TickTick](https://github.com/chrschorn/one-click-ticktick), which does the same for TickTick tasks. Thank you to its author for the idea and the clear design.
+
 | Issue part | Content |
 |---|---|
 | Title | Page title, or the page URL when the title is empty |
