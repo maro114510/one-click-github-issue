@@ -5,8 +5,9 @@ const settings = { owner: "octo", name: "inbox", token: "secret-token" };
 const page = { title: "Hello", url: "https://example.com/a" };
 
 function stubFetch(status: number) {
-  return vi.fn(async (_input: RequestInfo | URL, _init?: RequestInit) =>
-    new Response("{}", { status }),
+  return vi.fn(
+    async (_input: RequestInfo | URL, _init?: RequestInit) =>
+      new Response("{}", { status }),
   );
 }
 
@@ -65,7 +66,11 @@ describe("request content", () => {
 describe("request shape", () => {
   it("POSTs to the URI-encoded repository issues endpoint", async () => {
     const fetchFn = stubFetch(201);
-    await createIssue({ ...settings, owner: "o/x", name: "a b" }, page, fetchFn);
+    await createIssue(
+      { ...settings, owner: "o/x", name: "a b" },
+      page,
+      fetchFn,
+    );
     const [url, init] = fetchFn.mock.calls[0] ?? [];
     expect(url).toBe("https://api.github.com/repos/o%2Fx/a%20b/issues");
     expect(init?.method).toBe("POST");
