@@ -1,14 +1,16 @@
 name: Release Please
 
+# Started by hand with `pnpm release`: each run tags and publishes a merged
+# release PR, or opens or updates the release PR.
 on:
-  push:
-    branches:
-      - main
+  workflow_dispatch:
 
 permissions: {}
 
 jobs:
   release-please:
+    # A run from another branch would use that branch's copy of this workflow.
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     permissions:
       contents: write
