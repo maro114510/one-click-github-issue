@@ -1,0 +1,10 @@
+# 5 days in minutes, matching Dependabot's cooldown
+minimumReleaseAge: 7200
+# Fail the install when a dependency has an unreviewed lifecycle script
+strictDepBuilds: true
+# Never allow dependency install scripts; allowlist via onlyBuiltDependencies if ever needed
+dangerouslyAllowAllBuilds: false
+# Reject transitive dependencies from git or tarball URLs
+blockExoticSubdeps: true
+# Fail when a package's trust evidence is weaker than an earlier release
+trustPolicy: no-downgrade
