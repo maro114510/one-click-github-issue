@@ -55,4 +55,13 @@ describe("check-version", () => {
     expect(result.status).toBe(1);
     expect(result.stderr).toContain("manifest.json");
   });
+
+  it("fails when every version agrees but carries a pre-release suffix", () => {
+    const cwd = checkoutWithVersions({
+      pkg: "0.1.0-rc.1",
+      manifest: "0.1.0-rc.1",
+    });
+
+    expect(checkVersion(cwd, "v0.1.0-rc.1").status).toBe(1);
+  });
 });
