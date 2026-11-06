@@ -25,6 +25,6 @@ Before the extension is published on the Chrome Web Store, a new ADR replaces th
 ## Consequences
 
 - Creating a token is a manual step in GitHub's settings. That is acceptable for the author, but not for store users.
-- The token is stored unencrypted on the device. Anyone who can read the browser profile can create and edit Issues in the Target Repository.
+- The token is stored unencrypted on the device. Anyone who can read the browser profile can create and edit Issues in the Target Repository. [Keep the token in session storage](keep-the-token-in-session-storage.md) replaces this consequence: the token is no longer written to disk.
 - The token expires on the date chosen when it was created. A repository owned by a personal account can use a token with no expiration, but organizations cap tokens at 366 days by default. An expired or revoked token makes GitHub return 401, and the user must paste a new one.
 - Issues are authored by the account that owns the token, not by whichever account is signed in to github.com in the browser.
