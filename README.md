@@ -53,7 +53,7 @@ Inspired by [One-Click TickTick](https://github.com/chrschorn/one-click-ticktick
    ![Developer mode and Load unpacked on chrome://extensions](docs/images/load-unpacked.png)
 7. If the icon isn't in your toolbar, click the puzzle icon, then the pin next to **One-Click GitHub Issue**.
 
-✅ The extension icon is now in your toolbar.
+**Check:** The extension icon is now in your toolbar.
 
 ### 2. Create a repository for your Issues
 
@@ -69,7 +69,7 @@ Make sure it has an **Issues** tab. Forks have Issues turned off by default; tur
 
 </details>
 
-✅ Note the repository's `owner/name`, the part after `github.com/` in its address, for example `octocat/saved-pages`.
+**Check:** The repository exists. Note its `owner/name`, the part after `github.com/` in its address, for example `octocat/saved-pages`.
 
 ### 3. Create a token
 
@@ -89,7 +89,7 @@ Make sure it has an **Issues** tab. Forks have Issues turned off by default; tur
 3. Click **Generate token**, then **Generate token** again in the confirmation. Leave the other permissions as they are; **Metadata: Read-only** is added automatically.
 4. Copy the token (it starts with `github_pat_`) and save it in your password manager now. GitHub shows it only once.
 
-✅ Your password manager holds a token that starts with `github_pat_`.
+**Check:** Your password manager holds a token that starts with `github_pat_`.
 
 ### 4. Connect
 
@@ -99,7 +99,7 @@ Make sure it has an **Issues** tab. Forks have Issues turned off by default; tur
    ![Settings page after saving, with the repository filled in and the token set](docs/images/settings.png)
 3. Come back to this page and click the extension icon.
 
-✅ A green ✓ appears on the icon, and this page is now an Issue in your repository's **Issues** tab. You're all set.
+**Check:** A green ✓ appears on the icon, and this page is now an Issue in your repository's **Issues** tab. You're all set.
 
 ## Everyday use
 
