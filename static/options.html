@@ -2,9 +2,53 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>One-Click GitHub Issue</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <title>One-Click GitHub Issue settings</title>
+    <link rel="stylesheet" href="options.css" />
+    <script type="module" src="options.js"></script>
   </head>
   <body>
-    <h1>One-Click GitHub Issue</h1>
+    <main>
+      <h1 class="headline-small">One-Click GitHub Issue</h1>
+      <p class="body-medium subtitle">
+        Clicking the extension button saves the current tab as an Issue in
+        this repository.
+      </p>
+      <form id="settings" class="card" novalidate>
+        <div class="text-field" id="repository-field">
+          <input
+            id="repository"
+            name="repository"
+            type="text"
+            placeholder=" "
+            autocomplete="off"
+            spellcheck="false"
+            aria-describedby="repository-support"
+          />
+          <label for="repository">Repository</label>
+          <p id="repository-support" class="supporting-text">
+            owner/name, for example octocat/hello-world
+          </p>
+        </div>
+        <div class="text-field">
+          <input
+            id="token"
+            name="token"
+            type="password"
+            placeholder=" "
+            autocomplete="off"
+            spellcheck="false"
+            aria-describedby="token-support"
+          />
+          <label for="token">Personal access token</label>
+          <p id="token-support" class="supporting-text"></p>
+        </div>
+        <div class="actions">
+          <p id="status" class="body-medium status" role="status"></p>
+          <button id="save" type="submit" class="filled-button">Save</button>
+        </div>
+      </form>
+    </main>
   </body>
 </html>
