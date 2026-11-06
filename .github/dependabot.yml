@@ -22,3 +22,16 @@ updates:
         update-types:
           - "minor"
           - "patch"
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "daily"
+    assignees:
+      - "maro114510"
+    cooldown:
+      default-days: 5
+    groups:
+      minor-and-patch:
+        update-types:
+          - "minor"
+          - "patch"
