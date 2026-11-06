@@ -11,7 +11,7 @@ It is responsible for turning the active tab into an Issue and telling the user 
 - **Page**: the tab active when the user clicks the extension button. It has a title, and a URL unless Chrome withholds it, as on restricted pages such as `chrome://` pages and the Chrome Web Store.
 - **Target Repository**: the single repository, identified by owner and name, that receives every Issue.
 - **Credential**: the token that lets the extension create Issues in the Target Repository on behalf of the account that owns it. The ADR decides how the user obtains it.
-- **Settings**: the Target Repository and the Credential. Settings are complete when both are present.
+- **Settings**: the Target Repository and the Credential. Settings are complete when both are present, so they become incomplete when the browser restarts or the extension is disabled, reloaded, or updated, because the Credential is kept only in memory.
 - **Saved Issue**: the Issue created from a Page. Its title is the Page title, or the Page URL when the title is empty, cut to GitHub's 256-character limit with a trailing `…` when longer. Its body is the Page URL.
 - **Result Badge**: the mark on the extension button, per tab, that shows the outcome of the last click in that tab: success, failure, or none.
 
@@ -19,7 +19,7 @@ It is responsible for turning the active tab into an Issue and telling the user 
 
 ### Configure
 
-The user enters the Target Repository and the Credential once, so that later clicks need no input.
+The user enters the Target Repository once and the Credential once per browser session, so that later clicks need no input.
 
 ```mermaid
 sequenceDiagram
@@ -63,7 +63,7 @@ sequenceDiagram
 ## Invariants
 
 - The extension sends only the Page title and the Page URL, and sends them only to the Target Repository through the GitHub API.
-- The Credential is sent only to the GitHub API and is stored only on this device; it is never written to browser sync storage.
+- The Credential is sent only to the GitHub API and is kept only in memory; it is never written to disk or to browser sync storage.
 - The Page title is written only to the Issue title, never to the body, because GitHub turns `@name` in a body into a mention that notifies that person.
 - The extension does not check whether the Target Repository is public or private. Whether saved titles and URLs become public is the user's responsibility; in a public repository, a body URL that points to another GitHub Issue or pull request leaves a visible reference on it.
 - Each click creates a new Issue. The extension does not look for an existing Issue with the same URL, so clicking twice on a Page creates two Issues.
@@ -71,4 +71,5 @@ sequenceDiagram
 ## References
 
 - [Authenticate with a fine-grained PAT until store publication](../adr/authenticate-with-fine-grained-pat.md)
+- [Keep the token in session storage](../adr/keep-the-token-in-session-storage.md)
 - [One-Click TickTick](https://github.com/chrschorn/one-click-ticktick)
