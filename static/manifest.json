@@ -4,8 +4,13 @@
   "version": "0.0.1",
   "description": "Create a GitHub Issue from the current page in one click.",
   "minimum_chrome_version": "102",
-  "permissions": ["activeTab", "storage"],
-  "host_permissions": ["https://api.github.com/*"],
+  "permissions": [
+    "activeTab",
+    "storage"
+  ],
+  "host_permissions": [
+    "https://api.github.com/*"
+  ],
   "background": {
     "service_worker": "background.js",
     "type": "module"
